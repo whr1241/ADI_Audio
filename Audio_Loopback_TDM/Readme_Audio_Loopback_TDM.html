@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+  
+  <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Readme_Audio_Loopback_TDM</title>
+  
+
+  
+  
+  <style type="text/css">
+            body {font: 12px Arial, Helvetica, Verdana;}
+            table {font: 12px Arial, Helvetica, Verdana;}
+            h1 { font: bold 24px Helvetica; color:#003366; width:100%; border-bottom:1px solid #003366; margin-top:30px; margin-bottom:30px }
+            h2 { font: bold 18px Helvetica; color:#000000; border:0px; margin-top:20px; margin-bottom:20px }
+            h3 { font: bold 14px Helvetica; color:#000000; border:0px; margin-top:20px; margin-bottom:20px }
+        </style></head><body>
+<h1>
+Analog Devices, Inc. CrossCore(R) Embedded Studio Application Example</h1>
+
+<h2>ADSP-2156x EZ-KIT Board Support Package</h2>
+
+<h3>Project Name: Audio_Loopback_TDM</h3>
+
+<h3>CONTENTS</h3>
+
+<ol>
+
+  <li><a href="#DE">Description</a></li>
+  <li><a href="#PR">Processor</a></li>
+  <li><a href="#TESTED">Tested with</a></li>
+  <li><a href="#OV">Overview</a></li>
+  <li><a href="#MACRO">User Configuration Macros</a></li>
+  <li><a href="#HW">Hardware Setup & External connections</a></li>
+  <li><a href="#SRU">SRU connections</a></li> 
+  <li><a href="#REF">References</a></li>
+</ol>
+
+<h3><a name="DE">1. Description<br>
+</a></h3>
+
+<div style="text-align: left;">This example utilizes the ADAU1979 ADC and the ADAU1962a DAC to operate in TDM mode for Audio talkthrough:.<br>
+</div>
+
+<h3><a name="PR">2. Processor</a></h3>
+
+<ul>
+  <li>ADSP-2156x</li>
+</ul>
+
+<h3><a name="TESTED">3. Tested with</a></h3>
+
+<ul>
+
+  <li>ADSP-21569 EZ-Kit<br>
+  </li>
+  <li>Analog Devices CrossCore Embedded Studio</li>
+  <li>ICE-2000</li>
+</ul>
+
+<h3><a name="OV">4. Overview</a></h3>
+
+<div style="text-align: left;">This example demonstrates the usage of the ADAU1979 ADC and ADAU1962a DAC.<br>
+<br>
+Both the ADC and DAC are configured in TDM mode.<br>
+<br>
+ADAU1962a DAC is configured to provide clock and frame sync to SPORT4A, SPORT4B and ADAU1979 ADC.<br>
+<br>
+</div>
+
+<ol>
+
+</ol>
+
+<h3><a name="MACRO">5. User Configuration Macros</a></h3>
+<div style="text-align: left;">
+<ol>
+  <li>ADI_CONFIG_CONTINUOUS_AUDIO - This macro is used for selecting continuous time/short time audio as follows<br>
+    <br>
+    <ul>
+      <li>ADI_CONFIG_CONTINUOUS_AUDIO : 1 (Continuous Audio playback)</li>
+      <li>ADI_CONFIG_CONTINUOUS_AUDIO : 0 (Audio playback for short duration)</li>
+    </ul>
+    <br>
+  </li>
+  <br>
+By default audio playback is set to run for short duration(ADI_CONFIG_CONTINUOUS_AUDIO=0).<br>
+</ol>
+</div>
+
+
+
+<h3><a name="HW">6. Hardware Setup & External connections</a></h3>
+
+<div style="text-align: left;">	- Connect an audio source i/p to J7(IP1 & IP2) as shown in below diagram.<br>
+<br>
+	- Connect a headphone J10 to listen audio o/p (OP1 & OP2) as shown in below diagram.<br>
+<br>
+</div>
+<table style="width:35%">
+<tr><td><b>J10 audio output</b><td><b>J7 audio in/out</b></td></tr>
+<tr><td><b>OP1</b><td><b>IP1</b></td></tr>
+<tr><td>O&nbsp&nbsp&nbsp&nbsp&nbsp&nbspO&nbsp&nbsp&nbsp&nbsp&nbsp&nbspO&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspO</td><td>O&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspO</td></tr><br/>
+<tr><td>O&nbsp&nbsp&nbsp&nbsp&nbsp&nbspO&nbsp&nbsp&nbsp&nbsp&nbsp&nbspO&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspO</td><td>O&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspO</td></tr>
+<tr><td><b>OP2</b><td><b>IP2</b></td></tr>
+</table> 
+
+<h3><a name="SRU">7. SRU connections</a></h3>
+
+<div style="text-align: left;">Following connections are done using SRU.<br>
+<ol>
+  <li>	DAC  Clock 	    (output) ----> SPORT4A clock      (input)<br>
+    <br>
+  </li>
+    <li>	DAC Frame Sync   (output) ----> SPORT4A Frame Sync (input)<br>
+    <br>
+  </li>
+    <li>	DAC Clock 		(output) ----> SPORT4B clock 	  (input)<br>
+    <br>
+  </li>
+    <li>	 DAC Frame Sync   (output) ----> SPORT4B Frame Sync (input)<br>
+    <br>
+  </li>
+    <li>	DAC  Clock 	    (output) ----> ADC clock      	  (input)<br>
+    <br>
+  </li>
+    <li>	DAC Frame Sync   (output) ----> ADC Frame Sync     (input)<br>
+    <br>
+  </li>
+    <li>	ADC Data         (output) ----> SPORT4B D0 	      (input)<br>
+    <br>
+  </li>
+    <li>	SPORT 4A D0      (output) ----> DAC data           (input)<br>
+    <br>
+  </li>
+</div>
+
+
+<h3><a name="REF">8. References</a></h3>
+
+<ul>
+
+  <li>ADSP-2156x SHARC+ Processor Hardware Reference Manual<br>
+  </li>
+  <li>ADSP-21569 EZ-KIT Schematic<br>
+  </li>
+</ul>
+
+<br>
+
+<br>
+
+</body></html>
